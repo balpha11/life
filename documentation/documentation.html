@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Sales and Inventory Management System - User Guide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+
+  <div class="container">
+
+    <!-- Title and Subtitle -->
+    <h1 class="with-logo">
+      <img src="images/logo.png" alt="Logo" class="logo">
+      Life Sales and Inventory Management System
+    </h1>
+    <p class="intro-subtitle">Complete User Guide for Web Application and Mobile App</p>
+
+    <!-- Improved Table of Contents -->
+    <div class="toc">
+      <h3>📚 Table of Contents</h3>
+      <ul>
+        <li><a href="#quick-start">0. Quick Start / TL;DR</a></li>
+        <li><a href="#welcome">1. Welcome to the System</a></li>
+        <li><a href="#requirements">2. System Requirements</a></li>
+        <li><a href="#dependencies">2.1 Dependencies & External Tools</a></li>
+        <li>
+          <a href="#web">3. Using the Web Application (For the Boss)</a>
+          <ul>
+            <li><a href="#web-install">3.0 Installing the Web Application</a></li>
+            <li><a href="#web-login">3.1 How to Log In</a></li>
+            <li>
+              <a href="#dashboard">3.2 Exploring the Dashboard</a>
+            </li>
+            <li><a href="#business">3.3 Setting Up Your Business Details</a></li>
+            <li><a href="#profile">3.4 Updating Your Profile</a></li>
+            <li>
+              <a href="#page-builder">3.5 Page Builder</a>
+            </li>
+            <li><a href="#vehicles">3.6 Adding Vehicles</a></li>
+            <li><a href="#routes">3.7 Setting Up Routes</a></li>
+            <li><a href="#salesmen">3.8 Adding Salesmen</a></li>
+            <li><a href="#stores">3.9 Adding Stores</a></li>
+            <li><a href="#products">3.10 Adding Products</a></li>
+            <li><a href="#stock">3.11 Giving Stock to Vehicles</a></li>
+            <li><a href="#stockbill">3.12 Making a Stock Bill</a></li>
+            <li><a href="#orders">3.13 Checking Orders</a></li>
+            <li><a href="#dues">3.14 Tracking Money Owed (Dues)</a></li>
+            <li><a href="#reports">3.15 Looking at Reports</a></li>
+            <li><a href="#smtp">3.16 Setting Up SMTP</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#mobile">4. Using the Mobile App (For Salesmen)</a>
+          <ul>
+            <li><a href="#mobile-setup">4.1 Getting the App Ready</a></li>
+            <li><a href="#icon-name">4.2 Setting Up App Icon and App Name</a></li>
+            <li><a href="#mobile-use">4.3 How Salesmen Use the App</a></li>
+          </ul>
+        </li>
+        <li><a href="#video-tutorials">5. Video Tutorial Section</a></li>
+        <li><a href="#faq">6. Troubleshooting & FAQ</a></li>
+      </ul>
+    </div>
+
+    <!-- Quick Start / TL;DR Section -->
+    <div class="section" id="quick-start">
+      <span class="anchor"></span>
+      <h2>Quick Start / TL;DR</h2>
+      <div class="note">
+        <strong>Quick Start:</strong>
+        <ol>
+          <li>Upload the Web Application folder to your hosting panel (in public_html or public folder).</li>
+          <li>Create a MySQL database and note the credentials.</li>
+          <li>Visit <code>/install</code> on your domain and follow the installation steps.</li>
+          <li>Log in to the admin panel (<code>/admin/login</code>) and update your profile &amp; password.</li>
+          <li>Set up your business details, add products, and configure your mobile app.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="section" id="welcome">
+      <span class="anchor"></span>
+      <h2>Welcome to the System</h2>
+      <img src="images/welcome.png" alt="Welcome to the System" style="max-width:100%; margin-bottom:20px;">
+      <p>The <strong>Life Sales and Inventory Management System</strong> is a tool to help your business keep track of sales, products, and customers. It has two main parts:</p>
+      <ul>
+        <li><strong>Web Application</strong>: A website for the boss (administrator) to manage products, stock, and sales reports.</li>
+        <li><strong>Mobile App</strong>: An app for salesmen to use on their phones when they’re out selling, picking stores, and printing bills.</li>
+      </ul>
+      <p>This guide explains everything you need to know to use both parts. We’ve made it super simple so even beginners can follow along.</p>
+      <div class="note">
+        <strong>Important First Step:</strong> When you first get the system, log in with the following credentials:
+        <div class="code">
+          Email: admin@example.com<br>
+          Password: password
+        </div>
+        After you log in, you MUST change this password to keep your business secure. (See the “Updating Your Profile” section below.)
+      </div>
+    </div>
+
+    <!-- System Requirements -->
+    <div class="section" id="requirements">
+      <span class="anchor"></span>
+      <h2>System Requirements</h2>
+      <img src="images/system-requirements.png" alt="System Requirements" style="max-width:100%; margin-bottom:20px;">
+      <p>Before installing the system, ensure your server or local environment meets these requirements:</p>
+      <ul>
+        <li><strong>PHP Version</strong>: PHP version 8.2.0 or higher</li>
+        <li><strong>Laravel Version</strong>: Laravel 10</li>
+        <li><strong>MySQL Version</strong>: 8.3.0</li>
+        <li><strong>Apache Version</strong>: 2.4.59</li>
+        <li><strong>Required PHP Extensions</strong>:
+          <ul>
+            <li>php 8.2.7</li>
+            <li>PDO</li>
+            <li>pdo_mysql</li>
+            <li>mbstring</li>
+            <li>tokenizer</li>
+            <li>xml</li>
+            <li>ctype</li>
+            <li>json</li>
+            <li>symlink</li>
+          </ul>
+        </li>
+      </ul>
+      <div class="note">
+        <strong>Note:</strong> These requirements must be met for the system to work correctly. Consult your hosting provider or system administrator if you’re unsure.
+      </div>
+    </div>
+
+    <!-- Dependencies & External Tools Used -->
+    <div class="section" id="dependencies">
+      <span class="anchor"></span>
+      <h2>Dependencies & External Tools Used</h2>
+      <p>This system leverages several key technologies and tools to deliver a robust performance:</p>
+      <ul>
+        <li><strong>Backend Framework:</strong> Laravel 10</li>
+        <li><strong>Programming Language:</strong> PHP (8.2.0+)</li>
+        <li><strong>Database:</strong> MySQL 8.3.0</li>
+        <li><strong>Web Server:</strong> Apache 2.4.59</li>
+        <li><strong>Mobile Framework:</strong> Flutter for building the Android app</li>
+        <li><strong>Flutter Version:</strong> Flutter 3.2.7.4</li>
+        <li><strong>Dart Version:</strong> Dart 3.6.2</li>
+        <li><strong>SMTP:</strong> For automated email notifications (ensure your hosting supports outbound SMTP connections)</li>
+        <li><strong>Additional Tools:</strong> hPanel/cPanel for hosting management, Bluetooth for printer connectivity</li>
+      </ul>
+    </div>
+
+    <!-- Web Application Guide -->
+    <div class="section" id="web">
+      <span class="anchor"></span>
+      <h2>Using the Web Application (For the Boss)</h2>
+      <img src="images/dashboard.JPG" alt="Web Application" style="max-width:100%; margin-bottom:20px;">
+      <p>The web application is used on your computer with a web browser (like Chrome or Firefox) to manage your business.</p>
+
+      <!-- Extracting the Downloaded File (Pre-install) -->
+      <li class="step"><strong>Extract the Downloaded File</strong>:
+        <ul>
+          <li>After downloading the installable zip file from CodeCanyon, extract it on your local machine.</li>
+          <li>Inside, you’ll see two folders:
+            <ul>
+              <li><strong>Web Application</strong> – The folder to upload to your hosting panel.</li>
+              <li><strong>Flutter App</strong> – The mobile app source code (used later).</li>
+            </ul>
+          </li>
+          <li>To host the Web Application:
+            <ul>
+              <li>Open the <strong>Web Application</strong> folder.</li>
+              <li>Extract all its contents and upload them into the <strong>public_html</strong> (or public) folder of your hosting panel.</li>
+              <li><img src="images/extacted files.JPG" alt="Extracting the downloaded file" style="max-width:100%;"></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <!-- 0. Installing the Web Application -->
+      <div id="web-install">
+        <h3>0. Installing the Web Application</h3>
+        <img src="images/installimage1.JPG" alt="Installing the Web Application" style="max-width:100%; margin-bottom:20px;">
+        <p>Before you can log in and use the system, install it on your server or computer by following these steps:</p>
+        <ol>
+          <li class="step"><strong>Access Your Hosting Panel</strong>:
+            <ul>
+              <li>Log in to your hosting provider’s hPanel.</li>
+              <li><img src="images/hpanel.JPG" alt="Screenshot of hPanel" style="max-width:100%;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Extract the Downloaded File</strong>:
+            <ul>
+              <li>Extract the zip file to see the two folders.</li>
+              <li>Upload the contents of the <strong>Web Application</strong> folder to your hosting panel.</li>
+              <li><img src="images/extacted files.JPG" alt="Extracting the downloaded file" style="max-width:100%;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Create a New Database</strong>:
+            <ul>
+              <li>Create a new database in your hPanel and note the username, password, and database name.</li>
+              <li><img src="images/databasecreation.JPG" alt="Database creation screen" style="max-width:100%;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Begin the Installation</strong>:
+            <ul>
+              <li>Open your browser and visit your domain followed by <span class="code">/install</span> (e.g., <span class="code">http://yourbusiness.com/install</span>).</li>
+              <li>Click <strong>Next</strong> on the installation page.</li>
+              <li><img src="images/installimage1.JPG" alt="Installation page" style="max-width:100%;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>System Requirements Check</strong>:
+            <ul>
+              <li>The installer will display the system requirements page.</li>
+              <li><img src="images/installrequirements.JPG" alt="Requirements page" style="max-width:100%;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Enable PHP Extensions</strong>:
+            <ul>
+              <li>In your hPanel, go to PHP configuration under the Advanced section.</li>
+              <li>Enable the required PHP Extensions and remove <em>symlink</em> from the Disable Functions list.</li>
+              <li><img src="images/extensions.JPG" alt="Enabling PHP extensions" style="max-width:100%;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Database Configuration</strong>:
+            <ul>
+              <li>Enter your database details (username, password, database name) with host set to <span class="code">localhost</span>.</li>
+              <li><img src="images/database.JPG" alt="Database configuration" style="max-width:100%;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Admin Configuration</strong>:
+            <ul>
+              <li>Enter the admin details (name, email, password) on the next page.</li>
+              <li><img src="images/adminconfig.JPG" alt="Admin configuration" style="max-width:100%;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Complete Installation</strong>:
+            <ul>
+              <li>Click <strong>Next</strong> to finish the installation. A success message will confirm completion.</li>
+              <li><img src="images/finishpage.JPG" alt="Installation success message" style="max-width:100%;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Access Your Site and Admin Panel</strong>:
+            <ul>
+              <li>Visit your site’s frontend and access the admin panel at <span class="code">/admin/login</span> (e.g., <span class="code">http://yourbusiness.com/admin/login</span>).</li>
+              <li><img src="images/adminpage.JPG" alt="Admin login screen" style="max-width:100%;"></li>
+            </ul>
+          </li>
+        </ol>
+        <div class="warning">
+          <strong>Warning:</strong> Skipping any step or entering incorrect details may cause the system to malfunction.
+        </div>
+      </div>
+
+      <!-- 1. How to Log In -->
+      <div id="web-login">
+        <h3>1. How to Log In</h3>
+        <img src="images/adminpage.JPG" alt="How to Log In" style="max-width:100%; margin-bottom:20px;">
+        <p>Follow these steps to log in to the admin panel:</p>
+        <ol>
+          <li class="step">Open your browser and navigate to <span class="code">http://yourbusiness.com/admin/login</span>.</li>
+          <li class="step">Enter the default credentials:
+            <ul>
+              <li><strong>Email</strong>: admin@example.com</li>
+              <li><strong>Password</strong>: password</li>
+            </ul>
+          </li>
+          <li class="step">Click <strong>Login</strong> and then update your password immediately.</li>
+        </ol>
+        <div class="warning">
+          <strong>Warning:</strong> Incorrect credentials will trigger an error. Please double-check your input.
+        </div>
+      </div>
+
+      <!-- 2. Exploring the Dashboard -->
+      <div id="dashboard">
+        <h3>2. Exploring the Dashboard</h3>
+        <img src="images/dashboard.JPG" alt="Exploring the Dashboard" style="max-width:100%; margin-bottom:20px;">
+        <p>The dashboard gives you a snapshot of your business. It displays:</p>
+        <ul>
+          <li><strong>Total Salesmen, Vehicles, Routes, Stores, Products, Orders, and Stock Items</strong></li>
+          <li><strong>Graphs and Charts</strong> showing sales trends and product performance</li>
+          <li>A list of <strong>Low Stock Products</strong></li>
+        </ul>
+        <div class="example">Example: “Total Salesmen: 5, Total Vehicles: 3, Total Routes: 4”</div>
+        <h4>Detailed Graphs and Tables</h4>
+        <ol>
+          <li class="step"><strong>Totals Overview</strong>: Displays boxes with counts of salesmen, vehicles, routes, stores, products, orders, and stock items.</li>
+          <li class="step"><strong>Graphs and Charts</strong>:
+            <ul>
+              <li><strong>Sales Overview Graph</strong>: Line or bar chart showing total sales over time.</li>
+              <li><strong>Sales by Salesman Graph</strong>: Chart comparing sales figures per salesman.</li>
+              <li><strong>Top-Selling Products Graph</strong>: Bar or pie chart illustrating which products sell the most.</li>
+              <li><strong>Sales by Route Graph</strong>: Chart showing which routes generate the most sales.</li>
+              <li><strong>Revenue Over Time Graph</strong>: Line graph tracking revenue trends over time.</li>
+              <li><strong>Damaged Order Items Over Time</strong>: Graph indicating the number of broken items returned over time.</li>
+            </ul>
+          </li>
+          <li class="step"><strong>Low Stock Products Table</strong>: A table listing products with low stock in vehicles.</li>
+          <li class="step">Click on any graph or table item for more detailed reports.</li>
+        </ol>
+      </div>
+
+      <!-- 3. Setting Up Your Business Details -->
+      <div id="business">
+        <h3>3. Setting Up Your Business Details</h3>
+        <img src="images/businessdetails.JPG" alt="Setting Up Your Business Details" style="max-width:100%; margin-bottom:20px;">
+        <p>Configure your business information in General Settings:</p>
+        <ol>
+          <li class="step">Click <strong>Settings</strong> from the sidebar and select <strong>General Settings</strong>.</li>
+          <li class="step">Fill in details such as Company Name, Email, Address, Phone, Country, Currency, and Tax System.</li>
+          <li class="step">Click <strong>Update Settings</strong> to save your changes.</li>
+        </ol>
+        <div class="note">
+          <strong>Note:</strong> Choose the correct tax system as it will affect pricing and billing.
+        </div>
+      </div>
+
+      <!-- 4. Updating Your Profile -->
+      <div id="profile">
+        <h3>4. Updating Your Profile</h3>
+        <img src="images/profile.JPG" alt="Updating Your Profile" style="max-width:100%; margin-bottom:20px;">
+        <p>Secure your account by updating your personal details:</p>
+        <ol>
+          <li class="step">Click <strong>Settings</strong> in the sidebar, then select <strong>Profile Settings</strong>.</li>
+          <li class="step">Update your Profile Picture, Name, Email, and set a new password.</li>
+          <li class="step">Click <strong>Update Profile</strong> to apply the changes.</li>
+        </ol>
+        <div class="warning">
+          <strong>Warning:</strong> Do not keep the default password. Change it immediately.
+        </div>
+      </div>
+
+      <!-- 5. Page Builder -->
+      <div id="page-builder" class="section">
+        <span class="anchor"></span>
+        <h3>Page Builder</h3>
+        <img src="images/pagebuilder.JPG" alt="Page Builder Interface" style="max-width:100%; margin-bottom:20px;">
+        <p>
+          Welcome to the Page Builder – a fun, drag and drop interface that lets you design your website without any coding!
+          Simply grab a component from the toolbox and drop it into your canvas to start building your unique website.
+        </p>
+        <p>In the Page Builder, components are organized into several groups:</p>
+        
+        <h4>Layouts</h4>
+        <ul>
+          <li>Navbar</li>
+          <li>Hero</li>
+          <li>About</li>
+          <li>Features</li>
+          <li>Services</li>
+          <li>Footer</li>
+          <li>Section</li>
+        </ul>
+        
+        <h4>Additional</h4>
+        <ul>
+          <li>Animated Hero</li>
+          <li>Carousel</li>
+          <li>Pricing Table</li>
+          <li>Timeline</li>
+          <li>Progress Bar</li>
+          <li>Social Feed</li>
+          <li>Newsletter Signup</li>
+        </ul>
+        
+        <h4>Basic</h4>
+        <ul>
+          <li>Text Block</li>
+          <li>Image</li>
+          <li>Button</li>
+          <li>Card</li>
+        </ul>
+        
+        <h4>Media</h4>
+        <ul>
+          <li>Video</li>
+          <li>Gallery</li>
+          <li>Map</li>
+        </ul>
+        
+        <h4>Content</h4>
+        <ul>
+          <li>FAQ</li>
+          <li>Team</li>
+          <li>Blog Post</li>
+          <li>Testimonial</li>
+        </ul>
+        
+        <h4>Forms and UI</h4>
+        <ul>
+          <li>Contact Form</li>
+          <li>Dropdown Box</li>
+          <li>Accordion Toggle</li>
+          <li>Navlinks</li>
+        </ul>
+        
+        <p>
+          To add a component, simply drag it from the left toolbox into the canvas. Clicking a component in the canvas brings up an editing panel on the right where you can customize settings like website title, logo, background colors, fonts, and navigation links.
+        </p>
+        <p>
+          In the toolbar at the top, you’ll find buttons for <strong>Save Page</strong>, <strong>Preview</strong>, and <strong>Publish</strong> – keeping you always in control of your design.
+        </p>
+        <div class="note">
+          <strong>Tip:</strong> Experiment with different components and layouts to create a website that perfectly matches your brand’s style!
+        </div>
+      </div>
+
+      <!-- 6. Adding Vehicles -->
+      <div id="vehicles">
+        <h3>6. Adding Vehicles</h3>
+        <img src="images/vehicles.JPG" alt="Adding Vehicles" style="max-width:100%; margin-bottom:20px;">
+        <p>Vehicles represent the cars or vans used by your salesmen. To add a vehicle:</p>
+        <ol>
+          <li class="step">Click <strong>Vehicles</strong> in the sidebar.</li>
+          <li class="step">Click the <strong>Add New Vehicle</strong> button.</li>
+          <li class="step">Enter the <strong>Vehicle Number</strong> (e.g., “XYZ-789”).</li>
+          <li class="step">Click <strong>Add Vehicle</strong> and confirm the message.</li>
+          <li class="step">To edit or delete a vehicle, use the options in the vehicle list.</li>
+        </ol>
+      </div>
+
+      <!-- 7. Setting Up Routes -->
+      <div id="routes">
+        <h3>7. Setting Up Routes</h3>
+        <img src="images/routes.JPG" alt="Setting Up Routes" style="max-width:100%; margin-bottom:20px;">
+        <p>Routes determine the paths your salesmen take. To add a route:</p>
+        <ol>
+          <li class="step">Click <strong>Routes</strong> from the sidebar.</li>
+          <li class="step">Click <strong>Add New Route</strong>.</li>
+          <li class="step">Enter a <strong>Route Name</strong> (e.g., “Downtown Route”) and an optional description.</li>
+          <li class="step">Click <strong>Add Route</strong> to confirm.</li>
+        </ol>
+      </div>
+
+      <!-- 8. Adding Salesmen -->
+      <div id="salesmen">
+        <h3>8. Adding Salesmen</h3>
+        <img src="images/salesman.JPG" alt="Adding Salesmen" style="max-width:100%; margin-bottom:20px;">
+        <p>Add salesmen who will use the mobile app to sell your products:</p>
+        <ol>
+          <li class="step">Click <strong>Salesman</strong> in the sidebar.</li>
+          <li class="step">Click <strong>Add New Salesman</strong>.</li>
+          <li class="step">Fill in their details (Name, Email, Phone, Password, Vehicle, and Route).</li>
+          <li class="step">Click <strong>Add Salesman</strong> to save their information.</li>
+          <li class="step">Share their login credentials so they can access the mobile app.</li>
+        </ol>
+        <div class="note">
+          <strong>Note:</strong> Each salesman gets a unique login for the mobile app.
+        </div>
+      </div>
+
+      <!-- 9. Adding Stores -->
+      <div id="stores">
+        <h3>9. Adding Stores</h3>
+        <img src="images/stores.JPG" alt="Adding Stores" style="max-width:100%; margin-bottom:20px;">
+        <p>Stores represent the customers or shops visited by your salesmen. To add a store:</p>
+        <ol>
+          <li class="step">Click <strong>Stores</strong> in the sidebar.</li>
+          <li class="step">Click <strong>Add New Store</strong>.</li>
+          <li class="step">Fill in the store’s Name, assign a Route, and enter its full Address.</li>
+          <li class="step">Click <strong>Add Store</strong> to confirm.</li>
+        </ol>
+      </div>
+
+      <!-- 10. Adding Products -->
+      <div id="products">
+        <h3>10. Adding Products</h3>
+        <img src="images/products.JPG" alt="Adding Products" style="max-width:100%; margin-bottom:20px;">
+        <p>Products are what you sell. The product form will change based on your chosen tax system:</p>
+        <ol>
+          <li class="step">Click <strong>Products</strong> in the sidebar.</li>
+          <li class="step">Click <strong>Add New Product</strong>.</li>
+          <li class="step">Fill in the details:
+            <ul>
+              <li><strong>If VAT:</strong> Product Name, Base Price, VAT%</li>
+              <li><strong>If GST:</strong> Product Name, HSN/SAC Code, Base Price, SGST%, CGST%, Cess%</li>
+              <li><strong>If Sales Tax:</strong> Product Name, Base Price, Sales Tax%</li>
+            </ul>
+          </li>
+          <li class="step">The system will calculate the final price automatically.</li>
+          <li class="step">Click <strong>Add Product</strong> to save it.</li>
+        </ol>
+        <div class="example">
+          Example: Blue Pen, HSN: 9608, Base Price: 100, SGST%: 9, CGST%: 9, Cess%: 0.
+        </div>
+      </div>
+
+      <!-- 11. Giving Stock to Vehicles -->
+      <div id="stock">
+        <h3>11. Giving Stock to Vehicles</h3>
+        <img src="images/stock.JPG" alt="Giving Stock to Vehicles" style="max-width:100%; margin-bottom:20px;">
+        <p>Assign stock to vehicles so salesmen have products to sell:</p>
+        <ol>
+          <li class="step">Click <strong>Stock</strong> in the sidebar.</li>
+          <li class="step">Click <strong>Add New Stock</strong>.</li>
+          <li class="step">Select a <strong>Vehicle</strong> and then a <strong>Product</strong>, and specify the quantity.</li>
+          <li class="step">If needed, click <strong>Add Product</strong> to assign additional products to the same vehicle.</li>
+          <li class="step">Click <strong>Save</strong> to confirm.</li>
+        </ol>
+      </div>
+
+      <!-- 12. Making a Stock Bill -->
+      <div id="stockbill">
+        <h3>12. Making a Stock Bill</h3>
+        <img src="images/stockbill.JPG" alt="Making a Stock Bill" style="max-width:100%; margin-bottom:20px;">
+        <p>A stock bill lists the products in a vehicle. To generate one:</p>
+        <ol>
+          <li class="step">After adding stock, click <strong>Generate Stock Bill</strong>.</li>
+          <li class="step">You’ll be taken to a page displaying the generated bills.</li>
+          <li class="step">Each bill shows details like Invoice Number, Vehicle Number, and Date Generated.</li>
+          <li class="step">Next to each bill, you can view, download, or regenerate it.</li>
+        </ol>
+      </div>
+
+      <!-- 13. Checking Orders -->
+      <div id="orders">
+        <h3>13. Checking Orders</h3>
+        <img src="images/orders.JPG" alt="Checking Orders" style="max-width:100%; margin-bottom:20px;">
+        <p>Orders are generated when salesmen sell products. To check orders:</p>
+        <ol>
+          <li class="step">Click <strong>Orders</strong> from the sidebar.</li>
+          <li class="step">Each order shows details like Store Name, Salesman Name, Vehicle Number, and payment breakdown.</li>
+          <li class="step">Use the search boxes to filter orders by salesman, store, or vehicle.</li>
+        </ol>
+      </div>
+
+      <!-- 14. Tracking Money Owed (Dues) -->
+      <div id="dues">
+        <h3>14. Tracking Money Owed (Dues)</h3>
+        <img src="images/dues.JPG" alt="Tracking Money Owed" style="max-width:100%; margin-bottom:20px;">
+        <p>This section shows which stores owe money:</p>
+        <ol>
+          <li class="step">Click <strong>Dues</strong> in the sidebar.</li>
+          <li class="step">Each entry displays the Store Name, Total Due Amount, Latest Advance, Salesman Name, and Status.</li>
+          <li class="step">Click <strong>View Details</strong> to see full order details for that store.</li>
+        </ol>
+      </div>
+
+      <!-- 15. Looking at Reports -->
+      <div id="reports">
+        <h3>15. Looking at Reports</h3>
+        <img src="images/reports.JPG" alt="Looking at Reports" style="max-width:100%; margin-bottom:20px;">
+        <p>Reports help you monitor business performance. To view reports:</p>
+        <ol>
+          <li class="step">Click <strong>Reports</strong> in the sidebar.</li>
+          <li class="step">Choose a report type (Sales, Orders, Stock, or Damaged Products Report).</li>
+          <li class="step">Use the export buttons to save reports as PDF or Excel files.</li>
+        </ol>
+      </div>
+
+      <!-- 16. Setting Up SMTP -->
+      <div id="smtp">
+        <h3>16. Setting Up SMTP</h3>
+        <img src="images/smtp.JPG" alt="Setting Up SMTP" style="max-width:100%; margin-bottom:20px;">
+        <p>Configure SMTP to enable automated emails such as invoices and notifications:</p>
+        <ol>
+          <li class="step"><strong>Access SMTP Settings</strong>:
+            <ul>
+              <li>Click <strong>SMTP Settings</strong> in the sidebar (under the Settings menu).</li>
+            </ul>
+          </li>
+          <li class="step"><strong>Enter SMTP Details</strong>:
+            <ul>
+              <li>Mail Driver: <span class="code">smtp</span></li>
+              <li>SMTP Host: e.g., <span class="code">smtp.yourbusiness.com</span></li>
+              <li>SMTP Port: e.g., <span class="code">587</span> for TLS or <span class="code">465</span> for SSL</li>
+              <li>Username and Password: Your email credentials</li>
+              <li>Encryption: TLS or SSL</li>
+            </ul>
+          </li>
+          <li class="step"><strong>Save SMTP Settings</strong>:
+            <ul>
+              <li>Click <strong>Save Settings</strong> and confirm the success message.</li>
+            </ul>
+          </li>
+        </ol>
+        <div class="note">
+          <strong>Note:</strong> Confirm that your hosting provider permits outbound SMTP connections.
+        </div>
+      </div>
+    </div>
+
+    <!-- Flutter Mobile App Guide -->
+    <div class="section" id="mobile">
+      <span class="anchor"></span>
+      <h2>Using the Mobile App (For Salesmen)</h2>
+      <img src="images/mobileapp.png" alt="Mobile App" style="max-width:100%; margin-bottom:20px;">
+      <p>The mobile app is designed for salesmen to use on their Android devices while out selling.</p>
+
+      <!-- 1. Getting the App Ready -->
+      <div id="mobile-setup">
+        <h3>1. Getting the App Ready</h3>
+        <img src="images/apiconfig.JPG" alt="Getting the App Ready" style="max-width:100%; margin-bottom:20px;">
+        <p>Set up the mobile app by following these steps:</p>
+        <ol>
+          <li class="step"><strong>Extract the Downloaded File</strong>:
+            <ul>
+              <li>Download the installable zip file from CodeCanyon and extract it.</li>
+              <li>You will see two folders: <strong>Web Application</strong> (for your admin dashboard) and <strong>Flutter App</strong> (the mobile app source code).</li>
+              <li>Open the <strong>Flutter App</strong> folder in your IDE (e.g., Visual Studio Code).</li>
+            </ul>
+          </li>
+          <li class="step"><strong>Update the Website Address</strong>:
+            <ul>
+              <li>Open the file <span class="code">lib/services/app_config.dart</span>.</li>
+              <li>Locate the <span class="code">baseUrl</span> variable and change it to your web application’s URL, for example:
+                <div class="code">
+class ApiConfig {<br>
+&nbsp;&nbsp;static const String baseUrl = 'http://yourbusiness.com';<br>
+}
+                </div>
+              </li>
+              <li>Save the file.</li>
+            </ul>
+          </li>
+          <li class="step"><strong>Make the App File (APK)</strong>:
+            <ul>
+              <li>In the terminal, run <span class="code">flutter pub get</span> and then <span class="code">flutter build apk</span>.</li>
+              <li>After the build completes, locate the APK file in <span class="code">build/app/outputs/flutter-apk</span> (e.g., <span class="code">app-release.apk</span>).</li>
+            </ul>
+          </li>
+          <li class="step"><strong>Put the App on Phones</strong>:
+            <ul>
+              <li>Transfer the APK file to the salesman’s Android device via USB or email.</li>
+              <li>On the phone, open the file and follow the prompts to install the app.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <!-- 2. Setting Up App Icon and App Name -->
+      <div id="icon-name">
+        <h3>2. Setting Up App Icon and App Name</h3>
+        <img src="images/fluttericons.JPG" alt="Setting Up App Icon and App Name" style="max-width:100%; margin-bottom:20px;">
+        <p>Customize your mobile app’s appearance:</p>
+        <ol>
+          <li class="step"><strong>Update App Icon</strong>:
+            <ul>
+              <li>Open <span class="code">pubspec.yaml</span> and add the <code>flutter_launcher_icons</code> package as a dev dependency.</li>
+              <li>Add the configuration for your icon image. For example:
+                <div class="code">
+dev_dependencies:<br>
+&nbsp;&nbsp;flutter_launcher_icons: ^0.9.2<br><br>
+flutter_icons:<br>
+&nbsp;&nbsp;android: true<br>
+&nbsp;&nbsp;iOS: false<br>
+&nbsp;&nbsp;image_path: "assets/icon/app_icon.png"
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li class="step">Run <span class="code">flutter pub get</span> and then <span class="code">flutter pub run flutter_launcher_icons:main</span> to generate new icons.</li>
+          <li class="step"><strong>Update App Name</strong>:
+            <ul>
+              <li>Edit <span class="code">android/app/src/main/AndroidManifest.xml</span> and modify the <span class="code">android:label</span> attribute in the <code>&lt;application&gt;</code> tag to your desired name (e.g., "My Business App").</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <!-- 3. How Salesmen Use the App -->
+      <div id="mobile-use">
+        <h3>3. How Salesmen Use the App</h3>
+        <img src="images/how-salesmen-use-app.png" alt="How Salesmen Use the App" style="max-width:100%; margin-bottom:20px;">
+        <p>Once installed, the app is used by salesmen as follows:</p>
+        <ol>
+          <li class="step"><strong>Logging In</strong>:
+            <ul>
+              <li>Open the “Life” app on your phone.</li>
+              <li>Enter your assigned email and password.</li>
+              <li>Tap <strong>Login</strong> to access your dashboard.</li>
+              <li><img src="images/loginapp.png" alt="Login Screen" style="max-width:100%; margin-bottom:20px;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Main Screen (Dashboard)</strong>:
+            <ul>
+              <li>View your name, phone number, assigned vehicle, and current stock.</li>
+              <li><img src="images/dashboardapp.png" alt="Dashboard on Mobile" style="max-width:100%; margin-bottom:20px;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Transactions &amp; Stock Bill</strong>:
+            <ul>
+              <li>Tap the hamburger menu (three lines in the top-left corner) to open the menu.</li>
+              <li>Access <strong>Transactions</strong> (today’s sales) and <strong>Stock Bill</strong> (products in your vehicle).</li>
+              <li><img src="images/transactionstock.png" alt="Transactions and Stock Bill" style="max-width:100%; margin-bottom:20px;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Picking a Store</strong>:
+            <ul>
+              <li>Use the search bar on the main screen to find the store and select it.</li>
+              <li>View store details such as address and outstanding balance.</li>
+              <li>Enter sold product quantities and any returned (damaged) items.</li>
+              <li>Tap <strong>Proceed to Billing</strong> to generate the bill.</li>
+              <li><img src="images/storedetail.png" alt="Store Details" style="max-width:100%; margin-bottom:20px;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Making the Bill</strong>:
+            <ul>
+              <li>Review the bill details including products, total amount (with taxes), discounts, previous due, and cash received.</li>
+              <li>Tap <strong>Confirm Payment</strong> and confirm the prompt.</li>
+              <li><img src="images/billingscreen.png" alt="Billing Screen" style="max-width:100%; margin-bottom:20px;"></li>
+            </ul>
+          </li>
+          <li class="step"><strong>Printing the Bill</strong>:
+            <ul>
+              <li>Ensure your Bluetooth printer is turned on, connected, and loaded with paper.</li>
+              <li>Tap the printer icon or “Select Printer” and choose your printer.</li>
+              <li>Tap <strong>Print Bill</strong> to print the final bill.</li>
+              <li><img src="images/finalbillingscreen.png" alt="Final Billing Screen" style="max-width:100%; margin-bottom:20px;"></li>
+              <li><img src="images/printer.jpg" alt="Bluetooth Printer" style="max-width:100%; margin-bottom:20px;"></li>
+            </ul>
+          </li>
+        </ol>
+        <div class="note">
+          <strong>Note:</strong> If the printer does not work, verify it’s connected via Bluetooth and has paper.
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Tutorial Section -->
+    <div class="section" id="video-tutorials">
+      <span class="anchor"></span>
+      <h2>Video Tutorial Section</h2>
+      <p>Watch these video tutorials to see the installation and usage of the system in action:</p>
+      <ul>
+        <li>
+          <strong>Installation Guide:</strong>
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/your-installation-video" title="Installation Tutorial" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </li>
+        <li>
+          <strong>Mobile App Setup:</strong>
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/your-mobile-app-video" title="Mobile App Tutorial" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </li>
+        <li>
+          <strong>Using the Dashboard:</strong>
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/your-dashboard-video" title="Dashboard Tutorial" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </li>
+      </ul>
+      <div class="note">
+        <strong>Note:</strong> Replace the YouTube embed URLs with your actual video links.
+      </div>
+    </div>
+
+    <!-- Troubleshooting & FAQ Section -->
+    <div class="section" id="faq">
+      <span class="anchor"></span>
+      <h2>Troubleshooting & FAQ</h2>
+
+      <h3>🛠 Installation Issues</h3>
+      <ul>
+        <li>
+          <strong>❌ Problem: I see a 500 Internal Server Error after uploading.</strong><br>
+          <strong>Cause:</strong> Incorrect file permissions or missing PHP extensions.<br>
+          <strong>Solution:</strong> 
+          <ul>
+            <li>Ensure folders are set to <code>755</code> and files to <code>644</code>.</li>
+            <li>Enable all required PHP extensions (PDO, mbstring, json, etc.).</li>
+            <li>Check your server error log for more details.</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>❌ Problem: The installer doesn't show up when I visit <code>/install</code>.</strong><br>
+          <strong>Cause:</strong> Files might not be uploaded to the correct directory.<br>
+          <strong>Solution:</strong>
+          <ul>
+            <li>Make sure the contents of the <strong>Web Application</strong> folder are uploaded directly into <code>public_html</code>.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>📧 SMTP & Email Issues</h3>
+      <ul>
+        <li>
+          <strong>❌ Problem: Test email not sending from SMTP settings.</strong><br>
+          <strong>Cause:</strong> Incorrect port, credentials, or SMTP host.<br>
+          <strong>Solution:</strong>
+          <ul>
+            <li>Use port <code>587</code> for TLS or <code>465</code> for SSL.</li>
+            <li>Double-check SMTP username, password, and encryption type.</li>
+            <li>Ensure your hosting provider allows outbound SMTP.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>📱 Mobile App Issues</h3>
+      <ul>
+        <li>
+          <strong>❌ Problem: The mobile app can't connect to the server.</strong><br>
+          <strong>Cause:</strong> Wrong <code>baseUrl</code> or server blocking access.<br>
+          <strong>Solution:</strong>
+          <ul>
+            <li>Open <code>lib/services/app_config.dart</code> and confirm the <code>baseUrl</code> is correct (e.g. <code>https://yourdomain.com</code>).</li>
+            <li>Make sure your domain has SSL and no redirects are breaking the request.</li>
+            <li>Test the API URL in a mobile browser to confirm it loads.</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>❌ Problem: Flutter app won't build or shows plugin errors.</strong><br>
+          <strong>Cause:</strong> Missing dependencies or outdated Flutter version.<br>
+          <strong>Solution:</strong>
+          <ul>
+            <li>Run <code>flutter pub get</code> and <code>flutter clean</code>.</li>
+            <li>Make sure you're using Flutter 3.x or the version specified in the documentation.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>🖨️ Printing Issues</h3>
+      <ul>
+        <li>
+          <strong>❌ Problem: Bluetooth printer not connecting from the app.</strong><br>
+          <strong>Cause:</strong> Printer isn't paired or permissions not granted.<br>
+          <strong>Solution:</strong>
+          <ul>
+            <li>Go to phone settings and pair the printer via Bluetooth.</li>
+            <li>Ensure the app has <strong>Bluetooth</strong> and <strong>Location</strong> permissions.</li>
+            <li>Restart both phone and printer, then try again.</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>❌ Problem: Bill prints but format looks broken.</strong><br>
+          <strong>Cause:</strong> Incompatible printer width or encoding.<br>
+          <strong>Solution:</strong>
+          <ul>
+            <li>Use 58mm or 80mm Bluetooth thermal printers (recommended).</li>
+            <li>Check printer settings for character encoding (UTF-8 preferred).</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>🤔 General Questions</h3>
+      <ul>
+        <li>
+          <strong>Q: Can I use this on localhost?</strong><br>
+          A: Yes, but you need to make a few important changes:<br>
+          <ul>
+            <li>Move the <strong>index.php</strong> file and the entire <strong>build</strong> folder into the <code>/public</code> directory of your Laravel project.</li>
+            <li>Update any asset or API paths in <code>index.php</code> if needed, to reflect the correct relative URLs.</li>
+            <li>Ensure your local server (e.g., XAMPP, Laravel Valet) is pointing to the <code>public</code> folder as the document root.</li>
+          </ul>
+          This ensures the frontend runs properly and Laravel can handle routing as expected.
+        </li>
+        <li>
+          <strong>Q: Can I change the admin URL from <code>/admin/login</code>?</strong><br>
+          A: Yes, but you need to modify route definitions in Laravel.
+        </li>
+        <li>
+          <strong>Q: Do I need a Flutter license to build the app?</strong><br>
+          A: No. Flutter is open-source. You only need to install Flutter SDK and Android Studio or VS Code.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Support Section -->
+    <div class="section" id="support">
+      <span class="anchor"></span>
+      <h2>📞 Need More Help?</h2>
+      <p>If you're facing issues that are not covered in this documentation, feel free to reach out to us for direct support.</p>
+
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:betteronicsalphaprivateltd@gmail.com">betteronicsalphaprivateltd@gmail.com</a></li>
+        <li><strong>WhatsApp:</strong> <a href="https://wa.me/918943340464" target="_blank">+91 89433 40464</a></li>
+      </ul>
+
+      <div class="note">
+        <strong>Support Hours:</strong> Monday to Saturday, 10:00 AM – 6:00 PM IST<br>
+        Please include a screenshot or video of the issue, along with a brief description.
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>Documentation for v1.0.0 | Last Updated: March 31, 2025</p>
+      <p><a href="#top">↑ Back to top</a></p>
+    </footer>
+    
+  </div>
+</body>
+</html>
