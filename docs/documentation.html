@@ -578,6 +578,26 @@
           <strong>Note:</strong> Confirm that your hosting provider permits outbound SMTP connections.
         </div>
       </div>
+
+      <div id="timezone">
+  <h3>17. Setting Up Timezone</h3>
+  <p>
+    After installing your application, go to the <code>public/config/app.php</code> file.
+    Locate the timezone setting, which by default is set to:
+  </p>
+  <div class="code">
+    'timezone' => 'UTC',
+  </div>
+  <p>
+    Change it to your local timezone. For example, if you are based in India, update it as follows:
+  </p>
+  <div class="code">
+    'timezone' => 'Asia/Kolkata',
+  </div>
+  <div class="note">
+    <strong>Note:</strong> Setting the correct timezone ensures that date and time functions work accurately in your application.
+  </div>
+</div>
     </div>
 
     <!-- Flutter Mobile App Guide -->
